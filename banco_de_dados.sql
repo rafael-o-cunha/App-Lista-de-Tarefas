@@ -1,23 +1,28 @@
-//banco de dados php_tarefas
-create table tb_status(
-	id int not null primary key auto_increment,
-    status varchar(25) not null
+-- usa o banco que o docker criou
+USE tarefas_db;
+
+-- tabela de status
+CREATE TABLE IF NOT EXISTS tb_status (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    status VARCHAR(25) NOT NULL
 );
 
-insert into tb_status(status)values('pendente');
-insert into tb_status(status)values('realizado');
+INSERT INTO tb_status (status) VALUES ('pendente');
+INSERT INTO tb_status (status) VALUES ('realizado');
 
-create table tb_tarefas(
-	id int not null primary key auto_increment,
-    id_status int not null default 1,
-    foreign key(id_status) references tb_status(id),
-	tarefa text not null,
-    data_cadastrado datetime not null default current_timestamp
+-- tabela de tarefas
+CREATE TABLE IF NOT EXISTS tb_tarefas (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_status INT NOT NULL DEFAULT 1,
+    tarefa TEXT NOT NULL,
+    data_cadastrado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_status FOREIGN KEY (id_status) REFERENCES tb_status(id)
 );
 
-create table tb_usuarios(
-	id int not null primary key auto_increment,
-	nome varchar(50) not null,
-	email varchar(100) not null,
-	senha varchar(32) not null
+-- tabela de usuários
+CREATE TABLE IF NOT EXISTS tb_usuarios (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    senha VARCHAR(32) NOT NULL
 );

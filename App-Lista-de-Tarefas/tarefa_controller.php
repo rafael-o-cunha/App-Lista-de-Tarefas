@@ -1,7 +1,7 @@
 <?php
-    require '../../App-Lista-de-Tarefas/Tarefa.model.php';
-    require '../../App-Lista-de-Tarefas/tarefa.service.php';
-    require '../../App-Lista-de-Tarefas/conexao.php';
+    require_once __DIR__ . '/Tarefa.model.php';
+    require_once __DIR__ . '/tarefa.service.php';
+    require_once __DIR__ . '/conexao.php';
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
     $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : $pagina;
